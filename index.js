@@ -18,6 +18,6 @@ addButtonEl.addEventListener("click", function() {
     let priceValue = priceFieldEl.value;
     let expense = {description: descriptionValue, price: priceValue};
 
-    push(shoppingListInDB, expense);
+    push(expenseListInDB, expense);
 });
 
