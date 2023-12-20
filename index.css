@@ -27,6 +27,7 @@ input {
     border-radius: 8px;
     padding: 5px;
     margin: 10px 0;
+    font-family: 'Rubik', sans-serif;
 }
 
 #description-input {
@@ -38,7 +39,17 @@ input {
     max-width: 30%;
 }
 
+#limit-el {
+    margin: 0 auto;
+    font-size: 100px;
+}
+
 button {
     color: #FDFDFD;
     background-color: #AC485A;
+    border: 0;
+    border-radius: 8px;
+    padding: 5px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
 }
