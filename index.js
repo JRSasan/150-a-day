@@ -19,5 +19,16 @@ addButtonEl.addEventListener("click", function() {
     let expense = {description: descriptionValue, price: priceValue};
 
     push(expenseListInDB, expense);
+
+    const expenseListEl = document.getElementById("expense-list");
+
+    let html = `
+        <li><span>${descriptionValue}</span><span>${priceValue}</span></li>
+    `;
+
+    expenseListEl.innerHTML += html;
+    
+    descriptionFieldEl.value = "";
+    priceFieldEl.value = "";
 });
 

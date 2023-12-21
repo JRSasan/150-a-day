@@ -44,6 +44,11 @@ input {
     font-size: 100px;
 }
 
+#expense-list li {
+    display: flex;
+    justify-content: space-between;
+}
+
 button {
     color: #FDFDFD;
     background-color: #AC485A;
