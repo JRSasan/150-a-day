@@ -27,14 +27,27 @@ addButtonEl.addEventListener("click", function() {
     push(expenseListInDB, expense);
     set(totalInDB, total);
 
+    appendItemToExpenseListEl(descriptionValue, priceValue);
+
+    updateTotalValue(total.value);
+
+    clearInputFieldEl();
+});
+
+function clearInputFieldEl() {
+    descriptionFieldEl.value = "";
+    priceFieldEl.value = "";
+}
+
+function appendItemToExpenseListEl(itemDescription, itemPrice) {
     let html = `
-        <li><span>${descriptionValue}</span><span>${priceValue}</span></li>
+        <li><span>${itemDescription}</span><span>₱ ${itemPrice}</span></li>
     `;
 
     expenseListEl.innerHTML += html;
-    totalEl.innerHTML = `₱ ${total.value}`
+}
 
-    descriptionFieldEl.value = "";
-    priceFieldEl.value = "";
-});
+function updateTotalValue(totalExpense) {
+    totalEl.innerHTML = `₱ ${totalExpense}`;
+}
 
