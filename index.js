@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+import { getDatabase, ref, push, set, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 const appSettings = {
     databaseURL: "https://adaydb-8efe8-default-rtdb.asia-southeast1.firebasedatabase.app/"
@@ -33,6 +33,22 @@ addButtonEl.addEventListener("click", function() {
 
     clearInputFieldEl();
 });
+
+onValue(expenseListInDB, function(snapshot){
+    let expenseItemsArray = Object.values(snapshot.val());
+
+    for (let i = 0; i < expenseItemsArray.length; i++) {
+        let currentItem = expenseItemsArray[i];
+
+        appendItemToExpenseListEl(currentItem.description, currentItem.price);
+    }
+})
+
+onValue(totalInDB, function(snapshot){
+    let totalExpenseValue = Object.values(snapshot.val());
+
+    updateTotalValue(totalExpenseValue);
+})
 
 function clearInputFieldEl() {
     descriptionFieldEl.value = "";
