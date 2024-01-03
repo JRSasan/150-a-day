@@ -27,8 +27,6 @@ addButtonEl.addEventListener("click", function() {
     push(expenseListInDB, expense);
     set(totalInDB, total);
 
-    appendItemToExpenseListEl(descriptionValue, priceValue);
-
     updateTotalValue(total.value);
 
     clearInputFieldEl();
@@ -36,6 +34,8 @@ addButtonEl.addEventListener("click", function() {
 
 onValue(expenseListInDB, function(snapshot){
     let expenseItemsArray = Object.values(snapshot.val());
+
+    clearExpenseListEl();
 
     for (let i = 0; i < expenseItemsArray.length; i++) {
         let currentItem = expenseItemsArray[i];
@@ -53,6 +53,10 @@ onValue(totalInDB, function(snapshot){
 function clearInputFieldEl() {
     descriptionFieldEl.value = "";
     priceFieldEl.value = "";
+}
+
+function clearExpenseListEl() {
+    expenseListEl.innerHTML = "";
 }
 
 function appendItemToExpenseListEl(itemDescription, itemPrice) {
