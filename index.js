@@ -33,14 +33,16 @@ addButtonEl.addEventListener("click", function() {
 });
 
 onValue(expenseListInDB, function(snapshot){
-    let expenseItemsArray = Object.values(snapshot.val());
+    let expenseItemsArray = Object.entries(snapshot.val());
 
     clearExpenseListEl();
 
     for (let i = 0; i < expenseItemsArray.length; i++) {
         let currentItem = expenseItemsArray[i];
+        let currentItemId = currentItem[0];
+        let currentItemValue = currentItem[1];
 
-        appendItemToExpenseListEl(currentItem.description, currentItem.price);
+        appendItemToExpenseListEl(currentItemValue.description, currentItemValue.price);
     }
 })
 
