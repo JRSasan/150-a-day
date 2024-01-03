@@ -42,7 +42,7 @@ onValue(expenseListInDB, function(snapshot){
         let currentItemId = currentItem[0];
         let currentItemValue = currentItem[1];
 
-        appendItemToExpenseListEl(currentItemValue.description, currentItemValue.price);
+        appendItemToExpenseListEl(currentItem);
     }
 })
 
@@ -61,12 +61,21 @@ function clearExpenseListEl() {
     expenseListEl.innerHTML = "";
 }
 
-function appendItemToExpenseListEl(itemDescription, itemPrice) {
-    let html = `
-        <li><span>${itemDescription}</span><span>₱ ${itemPrice}</span></li>
-    `;
+function appendItemToExpenseListEl(item) {
+    let itemID = item[0];
+    let itemValue = item[1];
 
-    expenseListEl.innerHTML += html;
+    let list = document.createElement("li");
+    let itemDescription = document.createElement("span");
+    let itemPrice = document.createElement("span");
+
+    itemDescription.textContent = itemValue.description
+    itemPrice.textContent = itemValue.price
+
+    list.append(itemDescription);
+    list.append(itemPrice);
+
+    expenseListEl.append(list);
 }
 
 function updateTotalValue(totalExpense) {
