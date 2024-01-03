@@ -52,6 +52,11 @@ input {
     list-style: none;
     display: flex;
     justify-content: space-between;
+    padding: 5px;
+    background-color: #FFFDF8;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
 button {
