@@ -15,7 +15,7 @@ const priceFieldEl = document.getElementById("price-input");
 const totalEl = document.getElementById("total-el");
 const addButtonEl = document.getElementById("add-button");
 const expenseListEl = document.getElementById("expense-list");
-let totalValue;
+let totalValue = 0;
 
 addButtonEl.addEventListener("click", function() {
     let descriptionValue = descriptionFieldEl.value;
@@ -33,23 +33,32 @@ addButtonEl.addEventListener("click", function() {
 });
 
 onValue(expenseListInDB, function(snapshot){
-    let expenseItemsArray = Object.entries(snapshot.val());
+    if (snapshot.exists()){
+        let expenseItemsArray = Object.entries(snapshot.val());
 
-    clearExpenseListEl();
+        clearExpenseListEl();
 
-    for (let i = 0; i < expenseItemsArray.length; i++) {
-        let currentItem = expenseItemsArray[i];
-        let currentItemId = currentItem[0];
-        let currentItemValue = currentItem[1];
+        for (let i = 0; i < expenseItemsArray.length; i++) {
+            let currentItem = expenseItemsArray[i];
+            let currentItemId = currentItem[0];
+            let currentItemValue = currentItem[1];
 
-        appendItemToExpenseListEl(currentItem);
+            appendItemToExpenseListEl(currentItem);
+        }
+    } else {
+        expenseListEl.innerHTML = "No expenses here... yet"
     }
+    
 })
 
 onValue(totalInDB, function(snapshot){
-    totalValue = Number(Object.values(snapshot.val()));
+    if (snapshot.exists()){
+        totalValue = Number(Object.values(snapshot.val()));
+        updateTotalValue(totalValue);
+    } else {
+        totalEl.innerHTML = "₱ 0";
+    }
     
-    updateTotalValue(totalValue);
 })
 
 function clearInputFieldEl() {
