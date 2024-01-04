@@ -70,7 +70,7 @@ function appendItemToExpenseListEl(item) {
     let itemPrice = document.createElement("span");
 
     itemDescription.textContent = itemValue.description
-    itemPrice.textContent = itemValue.price
+    itemPrice.textContent = "₱ " + itemValue.price
 
     list.append(itemDescription);
     list.append(itemPrice);
