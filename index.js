@@ -15,7 +15,7 @@ const priceFieldEl = document.getElementById("price-input");
 const totalEl = document.getElementById("total-el");
 const addButtonEl = document.getElementById("add-button");
 const expenseListEl = document.getElementById("expense-list");
-let totalValue = 0;
+let totalValue;
 
 addButtonEl.addEventListener("click", function() {
     let descriptionValue = descriptionFieldEl.value;
@@ -47,9 +47,9 @@ onValue(expenseListInDB, function(snapshot){
 })
 
 onValue(totalInDB, function(snapshot){
-    let totalExpenseValue = Object.values(snapshot.val());
-
-    updateTotalValue(totalExpenseValue);
+    totalValue = Number(Object.values(snapshot.val()));
+    
+    updateTotalValue(totalValue);
 })
 
 function clearInputFieldEl() {
@@ -79,6 +79,7 @@ function appendItemToExpenseListEl(item) {
 }
 
 function updateTotalValue(totalExpense) {
+
     totalEl.innerHTML = `₱ ${totalExpense}`;
 }
 
