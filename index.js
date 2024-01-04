@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import { getDatabase, ref, push, set, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 const appSettings = {
     databaseURL: "https://adaydb-8efe8-default-rtdb.asia-southeast1.firebasedatabase.app/"
@@ -80,6 +80,17 @@ function appendItemToExpenseListEl(item) {
 
     itemDescription.textContent = itemValue.description
     itemPrice.textContent = "₱ " + itemValue.price
+
+    list.addEventListener("dblclick", function() {
+        let locationOfItemInDB = ref(database, `expenseList/${itemID}`);
+
+        totalValue -= itemValue.price
+        let total = {value: totalValue};
+
+        set(totalInDB, total);
+        
+        remove(locationOfItemInDB);
+    })
 
     list.append(itemDescription);
     list.append(itemPrice);
