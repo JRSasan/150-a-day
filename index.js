@@ -15,6 +15,7 @@ const priceFieldEl = document.getElementById("price-input");
 const totalEl = document.getElementById("total-el");
 const addButtonEl = document.getElementById("add-button");
 const expenseListEl = document.getElementById("expense-list");
+const clearButtonEl = document.getElementById("clear-button");
 let totalValue = 0;
 
 addButtonEl.addEventListener("click", function() {
@@ -31,6 +32,10 @@ addButtonEl.addEventListener("click", function() {
 
     clearInputFieldEl();
 });
+
+clearButtonEl.addEventListener('click', function() {
+    clearExpense();
+})
 
 onValue(expenseListInDB, function(snapshot){
     if (snapshot.exists()){
@@ -70,6 +75,10 @@ function clearExpenseListEl() {
     expenseListEl.innerHTML = "";
 }
 
+function updateTotalValue(totalExpense) {
+    totalEl.innerHTML = `₱ ${totalExpense}`;
+}
+
 function appendItemToExpenseListEl(item) {
     let itemID = item[0];
     let itemValue = item[1];
@@ -98,8 +107,15 @@ function appendItemToExpenseListEl(item) {
     expenseListEl.append(list);
 }
 
-function updateTotalValue(totalExpense) {
+function clearExpense() {
+    let locationOfListInDB = ref(database, `expenseList`);
+    let locationOfTotalInDB = ref(database, `total`);
 
-    totalEl.innerHTML = `₱ ${totalExpense}`;
+    totalValue = 0;
+
+    remove(locationOfListInDB);
+    remove(locationOfTotalInDB);
 }
+
+
 
