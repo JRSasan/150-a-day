@@ -59,6 +59,11 @@ input {
     margin-bottom: 5px;
 }
 
+#expense-list li:hover {
+    background-color: #FFECC7;
+    cursor: pointer;
+}
+
 button {
     color: #FDFDFD;
     background-color: #AC485A;
@@ -67,4 +72,9 @@ button {
     padding: 5px;
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
+}
+
+button:hover {
+    background-color: #432000;
+    cursor: pointer;
 }
