@@ -18,22 +18,7 @@ const expenseListEl = document.getElementById("expense-list");
 const clearButtonEl = document.getElementById("clear-button");
 let totalValue = 0;
 
-addButtonEl.addEventListener("click", function() {
-    if (descriptionFieldEl.value && priceFieldEl.value){
-        let descriptionValue = descriptionFieldEl.value;
-        let priceValue = priceFieldEl.value;
-        let expense = {description: descriptionValue, price: priceValue};
-        totalValue += Number(priceValue);
-        let total = {value: totalValue};
-
-        push(expenseListInDB, expense);
-        set(totalInDB, total);
-
-        updateTotalValue(total.value);
-
-        clearInputFieldEl();
-    }
-});
+addButtonEl.addEventListener("click", addItemtoExpenseList);
 
 clearButtonEl.addEventListener('click', clearExpense);
 
@@ -77,6 +62,23 @@ function clearExpenseListEl() {
 
 function updateTotalValue(totalExpense) {
     totalEl.innerHTML = `₱ ${totalExpense}`;
+}
+
+function addItemtoExpenseList() {
+    if (descriptionFieldEl.value && priceFieldEl.value){
+        let descriptionValue = descriptionFieldEl.value;
+        let priceValue = priceFieldEl.value;
+        let expense = {description: descriptionValue, price: priceValue};
+        totalValue += Number(priceValue);
+        let total = {value: totalValue};
+
+        push(expenseListInDB, expense);
+        set(totalInDB, total);
+
+        updateTotalValue(total.value);
+
+        clearInputFieldEl();
+    }
 }
 
 function appendItemToExpenseListEl(item) {
