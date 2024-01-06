@@ -33,9 +33,7 @@ addButtonEl.addEventListener("click", function() {
     clearInputFieldEl();
 });
 
-clearButtonEl.addEventListener('click', function() {
-    clearExpense();
-})
+clearButtonEl.addEventListener('click', clearExpense);
 
 onValue(expenseListInDB, function(snapshot){
     if (snapshot.exists()){
