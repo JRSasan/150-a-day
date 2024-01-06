@@ -5,6 +5,7 @@ html, body {
     background-color: #EEF0F4;
     color: #432000;
     box-sizing: border-box;
+    user-select: none;
 }
 
 .container {
